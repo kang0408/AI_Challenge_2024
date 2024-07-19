@@ -1,5 +1,29 @@
-# Vue 3 + Vite
+# HIT_ChiYeuMinhEm
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Giao diện website AI Chanllenge CLB Tin học HIT
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Hướng dẫn
+
+### 1. Tạo file .env dựa vào file mẫu (.env.example)
+
+- Chú thích
+
+```
+VITE_API_URL=http://localhost:3000 //Base URL API
+```
+
+### 2. Tải Dependencies
+
+```bash
+npm i
+# hoặc
+yarn
+```
+
+### 3. Chạy ứng dụng (development):
+
+```bash
+npm run dev
+# hoặc
+yarn dev
+```
