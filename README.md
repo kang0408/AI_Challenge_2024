@@ -9,7 +9,7 @@ Giao diện website AI Chanllenge CLB Tin học HIT
 - Chú thích
 
 ```
-VITE_API_URL=http://localhost:3000 //Base URL API
+API_BASE_URL=http://localhost:3000 //Base URL API
 ```
 
 ### 2. Tải Dependencies
