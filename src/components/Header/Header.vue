@@ -101,7 +101,7 @@ onBeforeUnmount(() => {
         v-if="toggleMenu"
       >
         <div
-          class="menu flex flex-row gap-4 p-4 justify-between bg-white absolute overflow-x-hidden rounded-b-3xl shadow-lg h-full transition-all duration-500 ease-out m:items-end m:flex-col m:absolute m:top-0 m:left-0 m:w-full m:h-1/2 sm:w-1/2 sm:h-full sm:items-start lg:flex-row lg:h-fit lg:justify-between lg:items-center lg:w-full"
+          class="menu flex flex-row gap-4 p-4 justify-between bg-white absolute overflow-x-hidden rounded-b-3xl shadow-lg h-full transition-all duration-500 ease-out m:items-end m:flex-col m:absolute m:top-0 m:left-0 m:w-full m:h-fit sm:w-1/2 sm:h-full sm:items-start lg:flex-row lg:h-fit lg:justify-between lg:items-center lg:w-full"
           :class="`menu-${menuPos}`"
         >
           <div class="z-10 m:hidden lg:block">
