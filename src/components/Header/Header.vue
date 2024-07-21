@@ -43,11 +43,11 @@ onBeforeUnmount(() => {
 
 <template>
   <header
-    class="rounded-3xl top-0 right-0 left-0 m:shadow-lg m:p-4 m:w-full m:fixed lg:shadow-none lg:w-full lg:p-4 z-50 bg-white"
+    class="rounded-3xl top-0 right-0 left-0 shadow-lg p-4 w-full fixed lg:shadow-none z-50 bg-white"
   >
     <!-- Logo mobile -> tablet -->
     <div class="menu-res lg:hidden flex items-center justify-between w-full bg-white">
-      <div class="m:w-14 w-full m:h-14">
+      <div class="w-14 h-14">
         <img src="/public/logo.jpg" alt="" class="w-full h-full" />
       </div>
       <div @click="toggleMenuHandler">
@@ -67,7 +67,7 @@ onBeforeUnmount(() => {
     <!-- Menu bar -->
     <transition name="slide">
       <div
-        class="m:fixed m:top-0 m:left-0 m:bottom-0 m:right-0 lg:w-full lg:absolute bg-gray-200 lg:rounded-3xl transition-all duration-500 ease-out"
+        class="fixed top-0 left-0 bottom-0 right-0 lg:w-full lg:absolute bg-gray-200 lg:rounded-3xl transition-all duration-500 ease-out"
         v-if="toggleMenu"
       >
         <div
