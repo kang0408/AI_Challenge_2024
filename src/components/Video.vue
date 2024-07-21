@@ -15,7 +15,7 @@
         :page-count="pageCount"
         show-quick-jumper
         :page-slot="pageSlot"
-        size="large"
+        :size="pageSizeRes"
         @update:page="handlePageChange"
       />
     </div>
@@ -53,18 +53,23 @@ function topFunction() {
 watch(currentPage, () => topFunction());
 
 const pageSlot = ref(7);
+const pageSizeRes = ref('');
 function getRes() {
   if (window.innerWidth < 480) {
     pageSlot.value = 2;
     pageSize.value = 20;
+    pageSizeRes.value = 'small';
   } else if (window.innerWidth >= 480 && window.innerWidth < 1024) {
     pageSlot.value = 7;
     pageSize.value = 27;
+    pageSizeRes.value = 'medium';
   } else if (window.innerWidth > 1024 && window.innerWidth <= 1280) {
     pageSlot.value = 7;
+    pageSizeRes.value = 'large';
   } else {
     pageSlot.value = 7;
     pageSize.value = 64;
+    pageSizeRes.value = 'large';
   }
 }
 
