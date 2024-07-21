@@ -8,6 +8,10 @@ const themeOverrides = {
   Radio: {
     labelFontWeight: '700',
     labelPadding: '0 16px 0 0'
+  },
+  Card: {
+    paddingHuge: '16px',
+    titleFontSizeHuge: '24px'
   }
 };
 </script>

@@ -1,6 +1,7 @@
 <script setup>
 import SearchOption from '@/components/Header/SearchOption.vue';
-import { NRadio } from 'naive-ui';
+import Search from '@components/Search.vue';
+import { NRadio, NModal, NCard } from 'naive-ui';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const checkedValue = ref(null);
@@ -13,21 +14,35 @@ function toggleMenuHandler() {
   toggleMenu.value = !toggleMenu.value;
 }
 
+const showModal = ref(false);
+const searchOption = ref('');
+function toggleSearchOption(name) {
+  searchOption.value = name;
+  showModal.value = !showModal.value;
+}
+
 const menuPos = ref('');
 const exitPos = ref('');
+const bodyStyle = ref({
+  width: '50%'
+});
+
 function getRes() {
   if (window.innerWidth < 480) {
     menuPos.value = 'top';
     exitPos.value = 'bottom';
     toggleMenu.value = false;
+    bodyStyle.value.width = '100%';
   } else if (window.innerWidth >= 480 && window.innerWidth < 1024) {
     menuPos.value = 'left';
     exitPos.value = 'right';
     toggleMenu.value = false;
+    bodyStyle.value.width = '80%';
   } else {
     menuPos.value = '';
     exitPos.value = '';
     toggleMenu.value = true;
+    bodyStyle.value.width = '50%';
   }
 }
 
@@ -80,9 +95,9 @@ onBeforeUnmount(() => {
           <div
             class="flex items-center gap-4 z-10 m:flex-col m:w-full m:items-end sm:items-start sm:h-full lg:flex-row lg:w-fit"
           >
-            <SearchOption option="Tìm kiếm" />
-            <SearchOption option="OCR" />
-            <SearchOption option="ASR" />
+            <SearchOption option="Tìm kiếm" @click="toggleSearchOption('Tìm kiếm')" />
+            <SearchOption option="OCR" @click="toggleSearchOption('OCR')" />
+            <SearchOption option="ASR" @click="toggleSearchOption('ASR')" />
             <div class="flex items-center gap-4 z-10 m:w-full">
               <div class="border-input m:justify-center">
                 <n-radio
@@ -191,6 +206,27 @@ onBeforeUnmount(() => {
       </div>
     </transition>
   </header>
+  <n-modal v-model:show="showModal">
+    <n-card
+      :title="searchOption"
+      :bordered="false"
+      size="huge"
+      aria-modal="true"
+      :style="bodyStyle"
+    >
+      <template #header-extra>
+        <div class="cursor-pointer" @click="showModal = !showModal">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">
+            <path
+              fill="currentColor"
+              d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
+            />
+          </svg>
+        </div>
+      </template>
+      <Search @show-modal="showModal = !showModal" />
+    </n-card>
+  </n-modal>
 </template>
 <style scoped>
 /* Menu animation */
