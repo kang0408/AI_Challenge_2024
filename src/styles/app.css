@@ -34,8 +34,8 @@
   input {
     outline: none;
   }
+}
 
-  #app {
-    height: 100vh;
-  }
+.border-input {
+  @apply flex items-center gap-4 px-4 py-2 border-4 border-primary bg-white rounded-3xl max-w-max cursor-pointer m:w-full m:max-w-none m:justify-between lg:w-fit lg:min-w-fit;
 }
