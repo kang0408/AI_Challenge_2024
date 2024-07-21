@@ -67,7 +67,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  window.addEventListener('resize', getRes);
+  window.removeEventListener('resize', getRes);
 });
 </script>
 

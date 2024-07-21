@@ -11,7 +11,14 @@ const routes = [
         meta: {
           title: 'Trang chủ'
         },
-        component: () => import('@pages/index.vue')
+        component: () => import('@pages/index.vue'),
+        children: [
+          {
+            path: '/pages/:page',
+            name: 'page',
+            component: () => import('@components/Video.vue')
+          }
+        ]
       }
     ]
   }
