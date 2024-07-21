@@ -1,7 +1,8 @@
 <script setup>
 import SearchOption from '@/components/Header/SearchOption.vue';
 import Search from '@components/Search.vue';
-import { NRadio, NModal, NCard } from 'naive-ui';
+import Settings from '@components/Settings.vue';
+import { NRadio, NModal, NCard, NDrawer, NDrawerContent } from 'naive-ui';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const checkedValue = ref(null);
@@ -21,10 +22,15 @@ function toggleSearchOption(name) {
   showModal.value = !showModal.value;
 }
 
+const showDrawer = ref(false);
+
 const menuPos = ref('');
 const exitPos = ref('');
-const bodyStyle = ref({
+const bodyModalStyle = ref({
   width: '50%'
+});
+const bodyDrawerStyle = ref({
+  width: '30%'
 });
 
 function getRes() {
@@ -32,17 +38,26 @@ function getRes() {
     menuPos.value = 'top';
     exitPos.value = 'bottom';
     toggleMenu.value = false;
-    bodyStyle.value.width = '100%';
+    bodyModalStyle.value.width = '100%';
+    bodyDrawerStyle.value.width = '100%';
   } else if (window.innerWidth >= 480 && window.innerWidth < 1024) {
     menuPos.value = 'left';
     exitPos.value = 'right';
     toggleMenu.value = false;
-    bodyStyle.value.width = '80%';
+    bodyModalStyle.value.width = '80%';
+    bodyDrawerStyle.value.width = '50%';
+  } else if (window.innerWidth > 1024 && window.innerWidth <= 1280) {
+    menuPos.value = '';
+    exitPos.value = '';
+    toggleMenu.value = true;
+    bodyModalStyle.value.width = '80%';
+    bodyDrawerStyle.value.width = '50%';
   } else {
     menuPos.value = '';
     exitPos.value = '';
     toggleMenu.value = true;
-    bodyStyle.value.width = '50%';
+    bodyModalStyle.value.width = '50%';
+    bodyDrawerStyle.value.width = '30%';
   }
 }
 
@@ -170,7 +185,7 @@ onBeforeUnmount(() => {
               </defs>
             </svg>
           </div>
-          <div class="z-10">
+          <div class="z-10" @click="showDrawer = !showDrawer">
             <div class="w-fit p-2 border-4 rounded-full border-primary bg-white cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
                 <path
@@ -212,10 +227,10 @@ onBeforeUnmount(() => {
       :bordered="false"
       size="huge"
       aria-modal="true"
-      :style="bodyStyle"
+      :style="bodyModalStyle"
     >
       <template #header-extra>
-        <div class="cursor-pointer" @click="showModal = !showModal">
+        <div class="cursor-pointer lg:hidden" @click="showModal = !showModal">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">
             <path
               fill="currentColor"
@@ -227,6 +242,27 @@ onBeforeUnmount(() => {
       <Search @show-modal="showModal = !showModal" />
     </n-card>
   </n-modal>
+  <n-drawer v-model:show="showDrawer" :style="bodyDrawerStyle">
+    <n-drawer-content>
+      <template #header>
+        <div class="flex items-center">
+          <p>Cài đặt</p>
+          <div
+            class="cursor-pointer absolute left-[90%] lg:hidden"
+            @click="showDrawer = !showDrawer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">
+              <path
+                fill="currentColor"
+                d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </template>
+      <Settings />
+    </n-drawer-content>
+  </n-drawer>
 </template>
 <style scoped>
 /* Menu animation */
