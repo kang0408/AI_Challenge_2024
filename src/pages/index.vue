@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <main>Trang chủ</main>
+  <main class="mt-[120px]">Trang chủ</main>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
